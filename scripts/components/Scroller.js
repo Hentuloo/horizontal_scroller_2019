@@ -37,12 +37,20 @@ class Scroller {
         this.sections[this.activeSection].scrollIntoView({
             behavior: 'smooth',
         });
-        this.navElements.forEach((el, index) => {
-            if (index === this.activeSection) {
-                return el.classList.add('navigation__element--active');
+
+        for (let i = 0; i < this.sections.length; i++) {
+            if (i === this.activeSection) {
+                this.navElements[i].classList.add(
+                    'navigation__element--active',
+                );
+                this.sections[i].classList.add('sections__element--active');
+            } else {
+                this.navElements[i].classList.remove(
+                    'navigation__element--active',
+                );
+                this.sections[i].classList.remove('sections__element--active');
             }
-            el.classList.remove('navigation__element--active');
-        });
+        }
     };
 
     wheelScroll = e => {
